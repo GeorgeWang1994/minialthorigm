@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from django.db import models
-from utils.utils_cls import ChoiceEnum
+from utils.utils_cls import ChoiceEnum, BaseModel
 
 
 class FeedBackChoiceEnum(ChoiceEnum):
@@ -11,9 +11,8 @@ class FeedBackChoiceEnum(ChoiceEnum):
     NO_REASON = u'没有其他原因'
 
 
-class FeedBack(models.Model):
+class FeedBack(BaseModel):
     content = models.TextField(max_length=300, blank=False, null=False, help_text=u'评论内容')
     user_id = models.CharField(max_length=100, db_index=True, unique=True, help_text=u'用户id')
     choice = models.CharField(max_length=100, default=FeedBackChoiceEnum.NO_REASON, choices=FeedBackChoiceEnum.choices(),
                               help_text=u'反馈选择')
-    create_time = models.DateTimeField(auto_now_add=True, help_text=u'创建时间')

@@ -2,12 +2,16 @@
 
 import importlib
 import inspect
+import json
+import random
+import string
 
 import fnmatch
 import os
+from django.http import HttpResponse
 from django.test import TestCase
 
-from settings import PROJECT_DIR
+from minialgorithm.settings import BASE_DIR
 
 
 def find_files_recursively(root_path, filename='*', prefix='', suffix='.py', exclude_name=()):
@@ -35,7 +39,7 @@ def add_app_testcase(app_name):
     获取当前app下testing文件夹中的所有测试用例
     :return:
     """
-    app_dir = os.path.join(PROJECT_DIR, app_name)
+    app_dir = os.path.join(BASE_DIR, app_name)
     if not os.path.exists(app_dir):
         print u'不存在app{0}的路径'.format(app_name)
         return
@@ -53,7 +57,7 @@ def add_app_testcase(app_name):
     #     """
     #     return re.findall(r"^class (\w+)\((\w+TestCase\w+)\):", string, flags=re.MULTILINE)
 
-    matches = find_files_recursively(testing_dir, exclude_name=('__init__.py', ))
+    matches = find_files_recursively(testing_dir, exclude_name=('__init__.py', 'mock.py'))
     test_cases = {}
 
     for file_name, file_path in matches.items():
@@ -66,3 +70,54 @@ def add_app_testcase(app_name):
                 test_cases[name] = obj
 
     return test_cases
+
+
+def author(author_name='George1994'):
+    """
+    作者装饰器
+    :param author_name: 作者名字
+    :return:
+    """
+    def _decor(func):
+        func.author_name = author_name
+        return func
+    return _decor
+
+
+def str_time_format(time, str_format="%Y-%m-%d"):
+    """
+    将时间转化为固定格式的字符串
+    :param time: 时间
+    :param str_format: 格式
+    :return:
+    """
+    return time.strftime(str_format)
+
+
+def json_http_response(content):
+    """
+    将内容序列化后以response的形式返回
+    :param content: 字典的内容
+    :return:
+    """
+    return HttpResponse(content=json.dumps(content), mimetype="application/json; charset=UTF-8",
+                        status=200)
+
+
+def random_str(num=12):
+    """
+    生成指定个数的随机字符串
+    :param num: 个数
+    :return:
+    """
+    return "".join(random.sample(string.ascii_letters + string.digits, num))
+
+
+def random_num(start=-100000, end=100000):
+    """
+    生成指定范围的随机数字
+    :param start: 起始
+    :param end: 结束
+    :return:
+    """
+    return random.randint(start, end)

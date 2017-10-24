@@ -9,5 +9,5 @@ class Article(BaseModel):
     title = models.CharField(max_length=120, help_text=u'标题')
     content = models.TextField(help_text=u'内容')
     url = models.URLField(help_text=u'url')
-    like_count = models.IntegerField(default=0, help_text=u'点赞人数')
+    favor_count = models.IntegerField(default=0, help_text=u'点赞人数')
     comment_count = models.IntegerField(default=0, help_text=u'评论人数')

@@ -17,7 +17,7 @@ def build_one_post_info(post):
             id: "455656",
             name: "ming",
         }
-        like_count: 0,
+        favor_count: 0,
         comment_count: 0,
         create_time: "2017-10-09",
     }
@@ -33,7 +33,7 @@ def build_one_post_info(post):
             'id': user.id,
             'name': user.username,
         },
-        'like_count': post.like_count,
+        'favor_count': post.favor_count,
         'comment_count': post.comment_count,
         'create_time': str_time_format(post.created_time),
     }
@@ -53,7 +53,7 @@ def build_home_info():
                     id: "455656",
                     name: "ming",
                 }
-                like_count: 0,
+                favor_count: 0,
                 comment_count: 0,
                 create_time: "2017-10-09",
             }
@@ -82,7 +82,7 @@ def build_hot_info():
                         id: "455656",
                         name: "ming",
                     }
-                    like_count: 0,
+                    favor_count: 0,
                     comment_count: 0,
                     create_time: "2017-10-09",
                 }

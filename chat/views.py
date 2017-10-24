@@ -32,11 +32,11 @@ def del_post_view():
     pass
 
 
-def like_post_view():
+def favor_post_view():
     pass
 
 
-def unlike_post_view():
+def unfavor_post_view():
     pass
 
 

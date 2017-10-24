@@ -25,7 +25,7 @@ def get_home_qs():
     根据时间来对帖子进行排序
     :return:
     """
-    return get_valid_post_qs().order_by('-created_time', '-like_count', '-comment_count')
+    return get_valid_post_qs().order_by('-created_time', '-favor_count', '-comment_count')
 
 
 def get_hot_qs():
@@ -33,4 +33,4 @@ def get_hot_qs():
     根据评论数来对帖子进行排序
     :return:
     """
-    return get_valid_post_qs().order_by('-comment_count', '-like_count', '-created_time')
+    return get_valid_post_qs().order_by('-comment_count', '-favor_count', '-created_time')

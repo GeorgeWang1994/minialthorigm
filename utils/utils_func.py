@@ -121,3 +121,7 @@ def random_num(start=-100000, end=100000):
     :return:
     """
     return random.randint(start, end)
+
+
+def get_user_by_request(request):
+    return request.user

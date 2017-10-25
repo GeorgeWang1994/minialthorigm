@@ -4,9 +4,10 @@ from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_view_exempt
 
 from account.manager import info_manager
-from utils.utils_func import get_user_by_request, json_http_response
+from utils.utils_func import get_user_by_request, json_http_response, author
 
 
+@author(author_name='George1994')
 @login_required
 @csrf_view_exempt
 def user_detail_view(request):
@@ -15,6 +16,7 @@ def user_detail_view(request):
     return json_http_response(info)
 
 
+@author(author_name='George1994')
 @login_required
 @csrf_view_exempt
 def user_create_posts_and_articles_view(request):
@@ -23,6 +25,7 @@ def user_create_posts_and_articles_view(request):
     return json_http_response(info)
 
 
+@author(author_name='George1994')
 @login_required
 @csrf_view_exempt
 def user_participate_posts_and_articles_view(request):
@@ -31,6 +34,7 @@ def user_participate_posts_and_articles_view(request):
     return json_http_response(info)
 
 
+@author(author_name='George1994')
 @login_required
 @csrf_view_exempt
 def user_favors_view(request):
@@ -39,6 +43,7 @@ def user_favors_view(request):
     return json_http_response(info)
 
 
+@author(author_name='George1994')
 @login_required
 @csrf_view_exempt
 def user_likes_view(request):
@@ -47,6 +52,7 @@ def user_likes_view(request):
     return json_http_response(info)
 
 
+@author(author_name='George1994')
 @login_required
 @csrf_view_exempt
 def user_comments_view(request):

@@ -1,14 +1,12 @@
 # -*- coding: utf-8 -*-
 
-from django.contrib.auth.models import User
-
 from chat.models import Post
 
 
-def get_user_by_id(user_id):
+def get_post_by_id(post_id):
     try:
-        return User.objects.get(id=user_id)
-    except User.DoesNotExist:
+        return Post.objects.get(id=post_id)
+    except Post.DoesNotExist:
         return None
 
 
@@ -34,3 +32,38 @@ def get_hot_qs():
     :return:
     """
     return get_valid_post_qs().order_by('-comment_count', '-favor_count', '-created_time')
+
+
+def create_post_db(content, author_id):
+    """
+    创建帖子
+    :param content:
+    :param author_id:
+    :return:
+    """
+    return Post.objects.create(content=content, author_id=author_id)
+
+
+def del_post_db(post):
+    """
+    删除post
+    :param post:
+    :return:
+    """
+    post.delete()
+
+
+def can_modify_post(post, user_id):
+    """
+    判断是否拥有更改post的权限
+    :param post:
+    :param user_id:
+    :return:
+    """
+    if not post:
+        return 1, u'不存在该帖子'
+
+    if post.author_id != user_id:
+        return 1, u'没有权限'
+
+    return 0, u''

@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import db_manager
+from account.manager.db_manager import get_user_by_id
 from utils.utils_func import str_time_format
 
 
@@ -22,10 +23,7 @@ def build_one_post_info(post):
         create_time: "2017-10-09",
     }
     """
-    if not post:
-        return {}
-
-    user = db_manager.get_user_by_id(post.author_id)
+    user = get_user_by_id(post.author_id)
     return {
         'id': post.id,
         'content': post.content,
@@ -39,7 +37,7 @@ def build_one_post_info(post):
     }
 
 
-def build_home_info():
+def get_home_posts():
     """
     构建主页帖子的返回信息
     :return:
@@ -65,10 +63,10 @@ def build_home_info():
 
     for qs in home_qs:
         info.append(build_one_post_info(qs))
-    return info
+    return {"posts": info}
 
 
-def build_hot_info():
+def get_hot_posts():
     """
         构建热门帖子的返回信息
         :return:
@@ -94,4 +92,32 @@ def build_hot_info():
 
     for qs in hot_qs:
         info.append(build_one_post_info(qs))
-    return info
+    return {"posts": info}
+
+
+def delete_post(user_id, post_id):
+    """
+    删除帖子
+    注意：需不需要把相关的模型也删除？
+    :param user_id:
+    :param post_id:
+    :return:
+    """
+    post = db_manager.get_post_by_id(post_id)
+    if not post:
+        return 1, u'不存在该帖子'
+    if post.author_id != user_id:
+        return 1, u'没有权限'
+
+    db_manager.del_post_db(post)
+    return 0, u''
+
+
+def get_post(post_id):
+    """
+    获取帖子相关信息
+    :param post_id:
+    :return:
+    """
+    post = db_manager.get_post_by_id(post_id)
+    return build_one_post_info(post)

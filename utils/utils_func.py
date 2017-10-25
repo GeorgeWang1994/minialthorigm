@@ -61,6 +61,9 @@ def add_app_testcase(app_name):
     test_cases = {}
 
     for file_name, file_path in matches.items():
+        if file_name[:4] != 'test':
+            continue
+
         file_module = importlib.import_module('{0}.testing.{1}'.format(app_name, file_name[:-3]))
         for name, obj in inspect.getmembers(file_module):
             if not inspect.isclass(obj):

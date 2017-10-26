@@ -6,7 +6,7 @@ from article.models import Article
 from chat.models import Post
 from comment.models import Comment, CommentTypeChoiceEnum
 from favor.models import Favor
-from like.models import Like, LikeTypeChoiceEnum
+from like.models import Like
 
 
 def get_user_by_id(user_id):

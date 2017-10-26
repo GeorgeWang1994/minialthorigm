@@ -23,8 +23,6 @@ def like_post_view(request):
 @login_required
 @csrf_view_exempt
 def un_like_post_view(request):
-    print 'adsavsvasd'
-
     post_id = request.POST['post_id']
     post_type = request.POST['post_type']
     user = get_user_by_request(request)

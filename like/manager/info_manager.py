@@ -33,12 +33,10 @@ def un_like_post(user_id, post_id, post_type):
     """
     post = get_post_by_id(post_id)
     if not post:
-        print 'come to here'
         return 1, u'不存在该帖子'
 
     like = db_manager.get_like_by_id(user_id, post_id, post_type)
     if not like:
-        print 'come to here2'
         return 1, u'没有点赞过'
 
     db_manager.delete_like_post_db(like)

@@ -3,8 +3,8 @@
 from django.contrib.auth.models import User
 
 from article.models import Article
-from chat.models import Post
-from comment.models import Comment, CommentTypeChoiceEnum
+from chat.models import Post, PostTypeChoiceEnum
+from comment.models import Comment
 from favor.models import Favor
 from like.models import Like
 
@@ -63,8 +63,8 @@ def get_user_participate_posts_qs(user):
     :param user:
     :return:
     """
-    like_post_ids = get_user_likes_ids_by_type(user.id, LikeTypeChoiceEnum.POST)
-    comment_post_ids = Comment.objects.filter(user.id, CommentTypeChoiceEnum.POST)
+    like_post_ids = get_user_likes_ids_by_type(user.id, PostTypeChoiceEnum.POST)
+    comment_post_ids = Comment.objects.filter(user.id, PostTypeChoiceEnum.POST)
 
     return Post.objects.filter(id__=set(like_post_ids + comment_post_ids))
 
@@ -84,8 +84,8 @@ def get_user_participate_articles_qs(user):
     :param user:
     :return:
     """
-    like_article_ids = get_user_likes_ids_by_type(user.id, LikeTypeChoiceEnum.ARTICLE)
-    comment_article_ids = Comment.objects.filter(user.id, CommentTypeChoiceEnum.ARTICLE)
+    like_article_ids = get_user_likes_ids_by_type(user.id, PostTypeChoiceEnum.ARTICLE)
+    comment_article_ids = Comment.objects.filter(user.id, PostTypeChoiceEnum.ARTICLE)
 
     return Article.objects.filter(id__in=set(like_article_ids + comment_article_ids))
 

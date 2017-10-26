@@ -8,6 +8,7 @@ from utils.utils_cls import BaseModel, ChoiceEnum
 class PostTypeChoiceEnum(ChoiceEnum):
     ARTICLE = "ARTICLE"
     POST = "POST"
+    COMMENT = "COMMENT"
 
 
 class Post(BaseModel):

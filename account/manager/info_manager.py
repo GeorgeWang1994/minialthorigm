@@ -2,7 +2,7 @@
 
 import db_manager
 from comment.models import CommentTypeChoiceEnum
-from like.models import LikeTypeChoiceEnum
+from chat.models import PostTypeChoiceEnum
 from account.models import UserInfo
 
 
@@ -110,8 +110,8 @@ def build_user_favors_info(user):
     :return:
     """
     favor_qs = db_manager.get_user_favors_qs(user)
-    post_favor_qs = db_manager.get_user_favors_qs_by_type(favor_qs, LikeTypeChoiceEnum.POST)
-    article_favor_qs = db_manager.get_user_favors_qs_by_type(favor_qs, LikeTypeChoiceEnum.ARTICLE)
+    post_favor_qs = db_manager.get_user_favors_qs_by_type(favor_qs, PostTypeChoiceEnum.POST)
+    article_favor_qs = db_manager.get_user_favors_qs_by_type(favor_qs, PostTypeChoiceEnum.ARTICLE)
 
     post_qs = db_manager.get_user_post_qs_by_favor_or_like_or_comment_qs(post_favor_qs)
     article_qs = db_manager.get_user_article_qs_by_favor_or_like_or_comment_qs(article_favor_qs)

@@ -6,4 +6,5 @@ urlpatterns = [
     url(r'^account/', include('account.urls')),
     url(r'^chat/', include('chat.urls')),
     url(r'^favor/', include('favor.urls')),
+    url(r'^like/', include('like.urls')),
 ]

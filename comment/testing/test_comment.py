@@ -13,10 +13,10 @@ class CommentTest(TestCase):
     收藏测试用例
     python manage.py test comment.CommentTest
     """
-    def test_favor(self):
+    def test_comment(self):
         """
         测试评论
-        python manage.py test comment.CommentTest.test_favor
+        python manage.py test comment.CommentTest.test_comment
         """
         client, user = create_login_user()
         post = create_post(author=user, content='这是我的帖子')
@@ -24,10 +24,10 @@ class CommentTest(TestCase):
         self.assertEqual(result['error'], 0)
         self.assertEqual(result['error_msg'], u'')
 
-    def test_un_favor(self):
+    def test_delete_comment(self):
         """
         测试删除评论
-        python manage.py test comment.CommentTest.test_un_favor
+        python manage.py test comment.CommentTest.test_delete_comment
         """
         client, user = create_login_user()
         post = create_post(author=user, content='这是我的帖子')

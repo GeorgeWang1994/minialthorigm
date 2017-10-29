@@ -1,7 +1,8 @@
 from django.conf.urls.defaults import url
 
-from chat import views as chat_view
+from comment import views as comment_view
 
 urlpatterns = [
-
+    url(r'^add/$', comment_view.add_comment_post_view),
+    url(r'^delete/$', comment_view.del_comment_post_view),
 ]

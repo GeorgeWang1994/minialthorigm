@@ -7,4 +7,5 @@ urlpatterns = [
     url(r'^chat/', include('chat.urls')),
     url(r'^favor/', include('favor.urls')),
     url(r'^like/', include('like.urls')),
+    url(r'^comment/', include('comment.urls')),
 ]

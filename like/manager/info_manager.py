@@ -16,7 +16,7 @@ def like_post(user_id, post_id, post_type):
     if not post:
         return 1, u'不存在该帖子'
 
-    favor, created = db_manager.create_like_post_db(user_id, post_id, post_type)
+    like, created = db_manager.create_like_post_db(user_id, post_id, post_type)
     if not created:
         return 1, u'已经点赞'
 
